@@ -28,7 +28,7 @@
       color: #fff;
     }
 
-    /* Khung hiển thị mô phỏng tỷ lệ điện thoại */
+    /* Khung giả lập giao diện điện thoại */
     .app-viewport {
       width: 100%;
       max-width: 430px;
@@ -40,7 +40,7 @@
       box-shadow: 0 0 50px rgba(0, 0, 0, 0.85);
     }
 
-    /* Bầu trời đêm: Trăng & Sao băng */
+    /* Trăng và Sao băng */
     .moon {
       position: absolute;
       top: 40px;
@@ -70,7 +70,7 @@
       100% { transform: translate(-260px, 360px) rotate(-35deg); opacity: 0; }
     }
 
-    /* Đom đóm bay lơ lửng */
+    /* Đom đóm lơ lửng */
     .firefly {
       position: absolute;
       width: 4px;
@@ -87,7 +87,7 @@
       50% { transform: translateY(-30px) scale(1.3); opacity: 0.95; }
     }
 
-    /* Đồng cỏ chân trời phía dưới */
+    /* Đồng cỏ chân trời */
     .grass-silhouette {
       position: absolute;
       bottom: 0;
@@ -99,7 +99,7 @@
       opacity: 0.65;
     }
 
-    /* Màn chuyển cảnh */
+    /* Chuyển tiếp màn hình */
     .screen {
       position: absolute;
       inset: 0;
@@ -117,7 +117,7 @@
       transform: scale(0.92);
     }
 
-    /* GIAO DIỆN 1: Nút giữ mở quà */
+    /* MÀN 1: Giữ mở quà */
     .hold-title {
       font-size: 1.15rem;
       font-weight: 600;
@@ -178,7 +178,6 @@
       align-items: center;
       font-size: 2.1rem;
       box-shadow: 0 0 25px rgba(255, 117, 140, 0.55);
-      transition: transform 0.2s ease;
     }
 
     .hold-hint {
@@ -187,10 +186,10 @@
       color: rgba(255, 255, 255, 0.55);
     }
 
-    /* GIAO DIỆN 2: Bó hoa tulip */
+    /* MÀN 2: Bó hoa hồng */
     .greeting-banner {
       position: absolute;
-      top: 11%;
+      top: 9%;
       text-align: center;
       padding: 0 15px;
     }
@@ -205,7 +204,7 @@
 
     .greeting-main {
       font-family: 'Dancing Script', cursive;
-      font-size: 2.2rem;
+      font-size: 2.3rem;
       color: #ffe5ec;
       text-shadow: 0 0 12px rgba(255, 180, 194, 0.6);
       line-height: 1.2;
@@ -216,9 +215,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: 40px;
+      margin-top: 45px;
       animation: floatBouquet 3s infinite ease-in-out;
-      filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.55));
     }
 
     @keyframes floatBouquet {
@@ -226,24 +224,27 @@
       50% { transform: translateY(-12px); }
     }
 
-    .bouquet-svg {
-      width: 250px;
-      height: 310px;
+    .flower-render {
+      width: 290px;
+      max-width: 82vw;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.65)) drop-shadow(0 0 18px rgba(230, 57, 70, 0.35));
     }
 
     .click-tag {
-      margin-top: 16px;
+      margin-top: 15px;
       font-size: 0.9rem;
       color: #ffe5ec;
       background: rgba(255, 255, 255, 0.12);
       backdrop-filter: blur(8px);
-      padding: 7px 18px;
+      padding: 7px 20px;
       border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.18);
       animation: pulseGlow 1.8s infinite;
     }
 
-    /* GIAO DIỆN 3: Bức thư kỷ niệm */
+    /* MÀN 3: Bức thư */
     .letter-modal {
       width: 86%;
       max-height: 84%;
@@ -254,7 +255,6 @@
       box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
       display: flex;
       flex-direction: column;
-      position: relative;
       animation: letterOpen 0.6s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
     }
 
@@ -324,33 +324,26 @@
       font-weight: 700;
       cursor: pointer;
       box-shadow: 0 4px 15px rgba(255, 117, 140, 0.4);
-      transition: transform 0.15s ease;
-    }
-
-    .btn-fold-letter:active {
-      transform: scale(0.95);
     }
   </style>
 </head>
 <body>
 
-  <!-- Âm thanh nền nhẹ nhàng du dương -->
+  <!-- Nhạc nền romantic nhẹ nhàng -->
   <audio id="romanticMusic" loop preload="auto">
     <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-love-story-112196.mp3" type="audio/mpeg">
   </audio>
 
   <div class="app-viewport" id="viewport">
     
-    <!-- Ánh trăng & Đồng cỏ nền -->
     <div class="moon"></div>
     <div class="shooting-star" id="shootingStar"></div>
 
     <svg class="grass-silhouette" viewBox="0 0 500 150" preserveAspectRatio="none">
       <path d="M0,150 L0,80 Q25,30 50,85 Q80,10 110,80 Q145,20 180,90 Q220,15 250,85 Q290,25 330,85 Q375,5 410,80 Q450,25 480,75 Q495,30 500,80 L500,150 Z" fill="#030814"></path>
-      <path d="M0,150 L0,95 Q40,45 80,100 Q130,35 170,95 Q230,40 280,100 Q340,30 390,95 Q440,45 500,90 L500,150 Z" fill="#02050d" opacity="0.6"></path>
     </svg>
 
-    <!-- MÀN 1: Giữ để mở hoa -->
+    <!-- MÀN 1: Nút giữ mở hoa -->
     <div class="screen" id="step1">
       <div class="hold-title">GIỮ ĐỂ MỞ QUÀ ✨</div>
       <div class="hold-trigger" id="holdBtn">
@@ -358,96 +351,29 @@
           <circle class="circle-bg" cx="50" cy="50" r="45"></circle>
           <circle class="circle-bar" id="progressBar" cx="50" cy="50" r="45"></circle>
         </svg>
-        <div class="hold-center-btn">🌸</div>
+        <div class="hold-center-btn">🌹</div>
       </div>
-      <div class="hold-hint">Chạm và giữ ngón tay trên nút tròn</div>
+      <div class="hold-hint">Chạm và giữ để mở quà</div>
     </div>
 
-    <!-- MÀN 2: Bó hoa tulip nở ra -->
+    <!-- MÀN 2: Bó hoa hồng xuất hiện -->
     <div class="screen hidden" id="step2">
       <div class="greeting-banner">
         <div class="greeting-subtitle">October 20th</div>
-        <div class="greeting-main">Happy Vietnamese<br>Women's Day 💐</div>
+        <div class="greeting-main">Happy Vietnamese<br>Women's Day 🌹</div>
       </div>
 
       <div class="bouquet-wrapper" id="bouquetBtn">
-        <!-- Đồ họa bó hoa Tulip & phong thư tinh xảo (SVG thuần chất lượng cao) -->
-        <svg class="bouquet-svg" viewBox="0 0 300 380">
-          <defs>
-            <linearGradient id="paperGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#f5ebe0"/>
-              <stop offset="100%" stop-color="#d5bdaf"/>
-            </linearGradient>
-            <linearGradient id="tulipLight" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#ffb3c1"/>
-              <stop offset="100%" stop-color="#ff4d6d"/>
-            </linearGradient>
-            <linearGradient id="tulipDark" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#ff758f"/>
-              <stop offset="100%" stop-color="#c9184a"/>
-            </linearGradient>
-            <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#95d5b2"/>
-              <stop offset="100%" stop-color="#40916c"/>
-            </linearGradient>
-          </defs>
-
-          <!-- Lá cây -->
-          <path d="M120 230 Q70 140 100 80 Q130 150 145 220 Z" fill="url(#leafGrad)"/>
-          <path d="M175 230 Q230 130 195 70 Q170 140 155 220 Z" fill="url(#leafGrad)"/>
-          <path d="M150 230 Q150 90 145 50 Q160 110 155 230 Z" fill="#52b788"/>
-
-          <!-- Giấy gói hoa phía sau -->
-          <polygon points="75,190 225,190 185,350 115,350" fill="url(#paperGrad)" stroke="#c6ac8f" stroke-width="2"/>
-
-          <!-- Tầng hoa Tulip hồng -->
-          <!-- Hoa trái -->
-          <g transform="translate(85, 115) scale(0.75)">
-            <ellipse cx="40" cy="50" rx="20" ry="32" fill="url(#tulipDark)"/>
-            <path d="M22,65 Q18,30 40,25 Q30,60 22,65 Z" fill="url(#tulipLight)"/>
-            <path d="M58,65 Q62,30 40,25 Q50,60 58,65 Z" fill="url(#tulipLight)"/>
-          </g>
-          <!-- Hoa phải -->
-          <g transform="translate(155, 115) scale(0.75)">
-            <ellipse cx="40" cy="50" rx="20" ry="32" fill="url(#tulipDark)"/>
-            <path d="M22,65 Q18,30 40,25 Q30,60 22,65 Z" fill="url(#tulipLight)"/>
-            <path d="M58,65 Q62,30 40,25 Q50,60 58,65 Z" fill="url(#tulipLight)"/>
-          </g>
-          <!-- Hoa giữa cao -->
-          <g transform="translate(118, 70) scale(0.85)">
-            <ellipse cx="40" cy="50" rx="22" ry="35" fill="url(#tulipDark)"/>
-            <path d="M20,68 Q15,30 40,22 Q28,62 20,68 Z" fill="url(#tulipLight)"/>
-            <path d="M60,68 Q65,30 40,22 Q52,62 60,68 Z" fill="url(#tulipLight)"/>
-          </g>
-          <!-- Hoa giữa thấp -->
-          <g transform="translate(120, 125) scale(0.8)">
-            <ellipse cx="40" cy="50" rx="21" ry="33" fill="url(#tulipDark)"/>
-            <path d="M21,66 Q16,30 40,24 Q29,62 21,66 Z" fill="url(#tulipLight)"/>
-            <path d="M59,66 Q64,30 40,24 Q51,62 59,66 Z" fill="url(#tulipLight)"/>
-          </g>
-
-          <!-- Giấy bọc hoa xếp nếp phía trước -->
-          <polygon points="65,185 150,265 85,285" fill="#f8edeb" opacity="0.95"/>
-          <polygon points="235,185 150,265 215,285" fill="#fcd5ce" opacity="0.95"/>
-          <polygon points="90,260 210,260 170,360 130,360" fill="url(#paperGrad)"/>
-
-          <!-- Phong bì thư hồng gắn trước nơ hoa -->
-          <rect x="105" y="270" width="90" height="58" rx="6" fill="#fff0f3" stroke="#ffb3c1" stroke-width="2"/>
-          <polygon points="105,270 150,305 195,270" fill="#ffe5ec" stroke="#ffb3c1" stroke-width="1.5"/>
-          <!-- Trái tim đỏ sáp niêm phong -->
-          <path d="M150,295 C148,290 142,290 142,296 C142,301 150,306 150,306 C150,306 158,301 158,296 C158,290 152,290 150,295 Z" fill="#e63946"/>
-          
-          <!-- Nơ ruy băng -->
-          <circle cx="150" cy="336" r="6" fill="#ff758f"/>
-          <path d="M150,336 Q130,320 120,338 Q135,342 150,336" fill="#ff758f"/>
-          <path d="M150,336 Q170,320 180,338 Q165,342 150,336" fill="#ff758f"/>
-        </svg>
-
+        <!-- Bó hoa hồng đỏ chất lượng cao -->
+        <img class="flower-render" 
+             src="https://pngimg.com/d/bouquet_PNG63.png" 
+             onerror="this.onerror=null; this.src='https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA4L3Jhd3BpeGVsX29mZmljZV8yNV9yb3Nlc19ib3VxdWV0X2lzb2xhdGVkX29uX3doaXRlX2JhY2tncm91bmRfMDhkMzk0MzItODhiZC00NmJmLTljMjAtYjM3MGQ1N2IyYTQxLnBuZw.png';" 
+             alt="Rose Bouquet" />
         <div class="click-tag">Chạm vào bó hoa để mở thư 💌</div>
       </div>
     </div>
 
-    <!-- MÀN 3: Đọc bức thư chúc mừng 20/10 -->
+    <!-- MÀN 3: Bức thư gửi từ Thu Nhiên -->
     <div class="screen hidden" id="step3">
       <div class="letter-modal">
         <div class="letter-header">
@@ -456,11 +382,11 @@
         </div>
         
         <div class="letter-content">
-          <p>Tuy chúng mình chỉ là những người bạn quen biết qua thế giới mạng, nhưng nhân ngày đặc biệt hôm nay, tớ vẫn muốn gửi tặng cậu bó hoa tulip online này cùng những lời chúc chân thành nhất!</p>
+          <p>Tuy chúng mình chỉ là những người bạn quen biết qua mạng, nhưng nhân ngày 20/10 hôm nay, tớ vẫn muốn gửi tặng cậu bó hoa hồng online này kèm những lời chúc tốt lành nhất!</p>
           
-          <p>Chúc cậu có một ngày 20/10 thật nhiều niềm vui, luôn rạng rỡ, xinh đẹp và ngập tràn tiếng cười. Chúc cho mọi mục tiêu, công việc hay học tập sắp tới của cậu đều diễn ra suôn sẻ, thuận lợi.</p>
+          <p>Chúc cậu có một ngày 20/10 thật vui vẻ, luôn rạng rỡ, xinh đẹp và ngập tràn tiếng cười. Chúc cho việc học tập hay công việc sắp tới của cậu đều diễn ra thật thuận lợi và suôn sẻ.</p>
           
-          <p>Mong cậu mỗi ngày đều luôn yêu đời, an yên và gặp thật nhiều may mắn trong cuộc sống nhé!</p>
+          <p>Cứ luôn tự tin, yêu đời và đón nhận thật nhiều điều may mắn trên con đường phía trước nhé!</p>
           
           <div class="letter-signature">
             <div class="signature-label">From online friend,</div>
@@ -475,7 +401,7 @@
   </div>
 
   <script>
-    // 1. Tạo hiệu ứng đom đóm
+    // Đom đóm bay lơ lửng
     const viewport = document.getElementById('viewport');
     for (let i = 0; i < 28; i++) {
       const fly = document.createElement('div');
@@ -487,18 +413,15 @@
       viewport.appendChild(fly);
     }
 
-    // 2. Chu kỳ sao băng lướt ngang bầu trời
+    // Sao băng
     const star = document.getElementById('shootingStar');
-    function triggerShootingStar() {
+    setInterval(() => {
       star.style.left = (40 + Math.random() * 50) + '%';
       star.style.animation = 'shoot 1.6s ease-out';
-      setTimeout(() => {
-        star.style.animation = 'none';
-      }, 1600);
-    }
-    setInterval(triggerShootingStar, 5000);
+      setTimeout(() => { star.style.animation = 'none'; }, 1600);
+    }, 5000);
 
-    // 3. Logic giữ nút mở quà
+    // Giữ nút mở hoa
     const holdBtn = document.getElementById('holdBtn');
     const progressBar = document.getElementById('progressBar');
     const music = document.getElementById('romanticMusic');
@@ -509,10 +432,7 @@
 
     function handleStart(e) {
       if (e) e.preventDefault();
-      // Bật nhạc nền ngay khi có tương tác đầu tiên
       music.play().catch(() => {});
-
-      // Rung nhẹ điện thoại (nếu máy hỗ trợ)
       if (navigator.vibrate) navigator.vibrate(40);
 
       holdTimer = setInterval(() => {
@@ -523,7 +443,6 @@
         if (holdProgress >= 100) {
           clearInterval(holdTimer);
           if (navigator.vibrate) navigator.vibrate([60, 40, 60]);
-          // Chuyển sang màn hoa
           document.getElementById('step1').classList.add('hidden');
           setTimeout(() => {
             document.getElementById('step2').classList.remove('hidden');
@@ -538,13 +457,12 @@
       progressBar.style.strokeDashoffset = maxOffset;
     }
 
-    // Hỗ trợ cảm ứng điện thoại lẫn click chuột máy tính
     holdBtn.addEventListener('touchstart', handleStart, { passive: false });
     window.addEventListener('touchend', handleEnd);
     holdBtn.addEventListener('mousedown', handleStart);
     window.addEventListener('mouseup', handleEnd);
 
-    // 4. Chạm vào bó hoa để mở thư
+    // Bấm bó hoa mở thư
     document.getElementById('bouquetBtn').addEventListener('click', () => {
       document.getElementById('step2').classList.add('hidden');
       setTimeout(() => {
@@ -552,7 +470,7 @@
       }, 350);
     });
 
-    // 5. Gấp thư để quay lại ngắm hoa tulip
+    // Gấp thư quay lại ngắm hoa
     document.getElementById('closeLetter').addEventListener('click', () => {
       document.getElementById('step3').classList.add('hidden');
       setTimeout(() => {
